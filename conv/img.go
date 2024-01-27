@@ -16,8 +16,8 @@ var faceMap = map[int]string{
 	1: "left",
 	2: "front",
 	3: "right",
-	4: "top",
-	5: "bottom",
+	4: "up",
+	5: "down",
 }
 
 func ReadImage(imagePath string) (image.Image, string, error) {
@@ -33,7 +33,9 @@ func ReadImage(imagePath string) (image.Image, string, error) {
 		return nil, "", err
 	}
 
-	if ext == "jpeg" || ext == "png" {
+	if ext == "jpeg" {
+		return imgIn, "jpg", nil
+	} else if ext == "png" {
 		return imgIn, ext, nil
 	}
 
@@ -56,7 +58,7 @@ func WriteImage(canvases []*image.RGBA, writeDirPath, imgExt string) error {
 		newFile, _ := os.Create(path)
 
 		switch imgExt {
-		case "jpeg":
+		case "jpg":
 			if err := jpeg.Encode(newFile, canvases[i], nil); err != nil {
 				return err
 			}

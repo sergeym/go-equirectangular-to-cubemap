@@ -111,4 +111,5 @@ fabric.properties
 panorama
 panorama.exe
 
+input/*
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains,vscode
